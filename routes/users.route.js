@@ -1,4 +1,5 @@
 const users = require('../lib/users.controller');
+const trips = require('../lib/trips.controller');
 const permissions = require('../lib/permissions.controller');
 
 exports.init = function(app) {
@@ -8,13 +9,19 @@ exports.init = function(app) {
   app.get('/users/authenticate', [
     users.authenticate,
   ]);
-  app.patch('/users/:user/update', [
+  app.get('/users/:userId/trip', [
     permissions.authenticationRequired,
-    permissions.minimumPermissionLevelRequired(1),
+    permissions.minimumPermissionLevelRequired(permissions.LEVEL.USER),
+    permissions.sameUserRequired,
+    trips.getTrips,
+  ]);
+  app.patch('/users/:userId/update', [
+    permissions.authenticationRequired,
+    permissions.minimumPermissionLevelRequired(permissions.LEVEL.USER),
     permissions.sameUserRequired,
     users.updateProfile,
   ]);
-  app.delete('/users/:userId', [
+  app.delete('/users/:userId/delete', [
     // ValidationMiddleware.validJWTNeeded,
     // PermissionMiddleware.minimumPermissionLevelRequired(ADMIN),
     // UsersController.removeById
