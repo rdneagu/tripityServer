@@ -6,7 +6,7 @@ exports.init = function(app) {
   app.post('/users/register', [
     users.register,
   ]);
-  app.get('/users/authenticate', [
+  app.post('/users/authenticate', [
     users.authenticate,
   ]);
   app.get('/users/:userId/trip', [

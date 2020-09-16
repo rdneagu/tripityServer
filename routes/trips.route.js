@@ -6,8 +6,8 @@ exports.init = function(app) {
     permissions.authenticationRequired,
     trips.getTrips,
   ]);
-  app.get('/trips/:tripId/synchronize', [
+  app.get('/trips/synchronize', [
     permissions.authenticationRequired,
-    trips.synchronizeTrip,
+    trips.sync,
   ]);
 };
