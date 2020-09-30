@@ -10,4 +10,9 @@ exports.init = function(app) {
     permissions.authenticationRequired,
     trips.sync,
   ]);
+  app.patch('/trips/synchronize', [
+    permissions.authenticationRequired,
+    permissions.tripBelongingToUserRequired,
+    trips.sync,
+  ]);
 };
