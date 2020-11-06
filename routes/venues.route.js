@@ -6,6 +6,10 @@ exports.init = function(app) {
     permissions.authenticationRequired,
     venues.getVenue,
   ]);
+  app.get('/venues/all', [
+    permissions.authenticationRequired,
+    venues.getAllVenues,
+  ]);
   app.get('/venues/:venueId', [
     permissions.authenticationRequired,
     venues.getVenue,
