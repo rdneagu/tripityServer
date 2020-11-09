@@ -5,11 +5,6 @@ const logger = require('./lib/log');
 const knex = require('./lib/db/config');
 const routes = require('./loaders/routes');
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
-
-
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
