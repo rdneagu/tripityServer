@@ -5,10 +5,10 @@ files:
     destination: /home/ec2-user/tripity-server
 hooks:
   AfterInstall:
-    - location: /home/ec2-user/tripity-server/__bin__/after-install
-      timeout: 600
-      runas: ec2-user
+    - location: __bin__/after-install.sh
+      timeout: 300
+      runas: root
   ApplicationStart:
-    - location: /home/ec2-user/tripity-server/__bin__/application-start
+    - location: __bin__/application-start.sh
       timeout: 30
-      runas: ec2-user
+      runas: root
