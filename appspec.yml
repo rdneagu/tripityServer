@@ -1,0 +1,14 @@
+version: 1.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/tripity-server
+hooks:
+  AfterInstall:
+    - location: /home/ec2-user/tripity-server/__bin__/after-install
+      timeout: 600
+      runas: ec2-user
+  ApplicationStart:
+    - location: /home/ec2-user/tripity-server/__bin__/application-start
+      timeout: 30
+      runas: ec2-user
