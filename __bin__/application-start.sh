@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-npm run start
+cd /home/ec2-user/tripity-server
+($which pm2) start .
