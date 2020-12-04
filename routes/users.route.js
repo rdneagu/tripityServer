@@ -22,8 +22,8 @@ exports.init = function(app) {
     users.updateProfile,
   ]);
   app.delete('/users/:userId/delete', [
-    // ValidationMiddleware.validJWTNeeded,
-    // PermissionMiddleware.minimumPermissionLevelRequired(ADMIN),
-    // UsersController.removeById
+    permissions.authenticationRequired,
+    permissions.sameUserRequired,
+    users.delete,
   ]);
 };
