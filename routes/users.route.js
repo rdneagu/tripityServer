@@ -1,6 +1,6 @@
 const users = require('../lib/users.controller');
 const trips = require('../lib/trips.controller');
-const permissions = require('../lib/permissions.controller');
+const { PERMISSION_LEVEL }, permissions = require('../lib/permissions.controller');
 
 exports.init = function(app) {
   app.post('/users/register', [
@@ -11,13 +11,13 @@ exports.init = function(app) {
   ]);
   app.get('/users/:userId/trip', [
     permissions.authenticationRequired,
-    permissions.minimumPermissionLevelRequired(permissions.LEVEL.USER),
+    permissions.minimumPermissionLevelRequired(PERMISSION_LEVEL.USER),
     permissions.sameUserRequired,
     trips.getTrips,
   ]);
   app.patch('/users/:userId/update', [
     permissions.authenticationRequired,
-    permissions.minimumPermissionLevelRequired(permissions.LEVEL.USER),
+    permissions.minimumPermissionLevelRequired(PERMISSION_LEVEL.USER),
     permissions.sameUserRequired,
     users.updateProfile,
   ]);
