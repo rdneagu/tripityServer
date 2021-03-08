@@ -1,5 +1,11 @@
 # node.js Tripity server
 
+## Installing the server
+
+Run `npm install` from the root folder which will install all the required dependencies.
+
+## Configuring and running the server
+
 The server requires `pm2` npm module and can be installed using `npm install -g pm2`
 
 [Full documentation for the pm2 module](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/)
@@ -50,3 +56,12 @@ AWS services **EC2**, **CodePipeline**, **IAM**, **RDS** and general code buildi
 
 ## Database configuration
 
+The table schema can be found in: [/lib/db/tables.js](/lib/db/tables.js)
+
+The database config and connection details which **must** be changed based on your RDS instance is found here: [/lib/db/config.js](/lib/db/config.js)
+
+### Adding more tables, changing table fields
+
+Adding or changing the tables can be done through the [/lib/db/tables.js](/lib/db/tables.js) file.
+
+Any modification requires schema recreation which can be done by changing the `drop` flag on line 29 in [/lib/db/config.js](/lib/db/config.js) to **true** and starting/restarting the server. The change will cause the database to drop all the tables and create them from scratch. Remember to change the flag back to **false** so your database is not purged and recreated on every restart.
